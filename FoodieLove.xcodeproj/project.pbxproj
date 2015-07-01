@@ -15,6 +15,11 @@
 		8E7B580E1B41C51000927857 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7B580D1B41C51000927857 /* Images.xcassets */; };
 		8E7B58111B41C51000927857 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E7B580F1B41C51000927857 /* LaunchScreen.xib */; };
 		8E7B581D1B41C51000927857 /* FoodieLoveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B581C1B41C51000927857 /* FoodieLoveTests.m */; };
+		8E7B582D1B41DABC00927857 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E7B582C1B41DABC00927857 /* Settings.plist */; };
+		8E7B58331B41DDF100927857 /* Dishes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B58321B41DDF100927857 /* Dishes.m */; };
+		8E7B583C1B42E91100927857 /* ViewControllerDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B583B1B42E91100927857 /* ViewControllerDetail.m */; };
+		8E7B583F1B433BAC00927857 /* DishCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B583E1B433BAC00927857 /* DishCollectionViewCell.m */; };
+		8E7B58421B43892600927857 /* UIColor+Gummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B58411B43892600927857 /* UIColor+Gummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +47,15 @@
 		8E7B58161B41C51000927857 /* FoodieLoveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodieLoveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7B581B1B41C51000927857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E7B581C1B41C51000927857 /* FoodieLoveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodieLoveTests.m; sourceTree = "<group>"; };
+		8E7B582C1B41DABC00927857 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
+		8E7B58311B41DDF100927857 /* Dishes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dishes.h; sourceTree = "<group>"; };
+		8E7B58321B41DDF100927857 /* Dishes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dishes.m; sourceTree = "<group>"; };
+		8E7B583A1B42E91100927857 /* ViewControllerDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerDetail.h; sourceTree = "<group>"; };
+		8E7B583B1B42E91100927857 /* ViewControllerDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerDetail.m; sourceTree = "<group>"; };
+		8E7B583D1B433BAC00927857 /* DishCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DishCollectionViewCell.h; sourceTree = "<group>"; };
+		8E7B583E1B433BAC00927857 /* DishCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DishCollectionViewCell.m; sourceTree = "<group>"; };
+		8E7B58401B43892600927857 /* UIColor+Gummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Gummy.h"; sourceTree = "<group>"; };
+		8E7B58411B43892600927857 /* UIColor+Gummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Gummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,10 +101,19 @@
 				8E7B58021B41C50F00927857 /* AppDelegate.m */,
 				8E7B58071B41C51000927857 /* ViewController.h */,
 				8E7B58081B41C51000927857 /* ViewController.m */,
+				8E7B583A1B42E91100927857 /* ViewControllerDetail.h */,
+				8E7B583B1B42E91100927857 /* ViewControllerDetail.m */,
+				8E7B583D1B433BAC00927857 /* DishCollectionViewCell.h */,
+				8E7B583E1B433BAC00927857 /* DishCollectionViewCell.m */,
 				8E7B580A1B41C51000927857 /* Main.storyboard */,
+				8E7B58401B43892600927857 /* UIColor+Gummy.h */,
+				8E7B58411B43892600927857 /* UIColor+Gummy.m */,
+				8E7B582C1B41DABC00927857 /* Settings.plist */,
 				8E7B580D1B41C51000927857 /* Images.xcassets */,
 				8E7B580F1B41C51000927857 /* LaunchScreen.xib */,
 				8E7B58041B41C51000927857 /* FoodieLove.xcdatamodeld */,
+				8E7B58311B41DDF100927857 /* Dishes.h */,
+				8E7B58321B41DDF100927857 /* Dishes.m */,
 				8E7B57FD1B41C50F00927857 /* Supporting Files */,
 			);
 			path = FoodieLove;
@@ -203,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E7B580C1B41C51000927857 /* Main.storyboard in Resources */,
+				8E7B582D1B41DABC00927857 /* Settings.plist in Resources */,
 				8E7B58111B41C51000927857 /* LaunchScreen.xib in Resources */,
 				8E7B580E1B41C51000927857 /* Images.xcassets in Resources */,
 			);
@@ -223,8 +247,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E7B58061B41C51000927857 /* FoodieLove.xcdatamodeld in Sources */,
+				8E7B58421B43892600927857 /* UIColor+Gummy.m in Sources */,
 				8E7B58031B41C50F00927857 /* AppDelegate.m in Sources */,
 				8E7B58091B41C51000927857 /* ViewController.m in Sources */,
+				8E7B58331B41DDF100927857 /* Dishes.m in Sources */,
+				8E7B583C1B42E91100927857 /* ViewControllerDetail.m in Sources */,
+				8E7B583F1B433BAC00927857 /* DishCollectionViewCell.m in Sources */,
 				8E7B58001B41C50F00927857 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,6 +448,7 @@
 				8E7B58221B41C51000927857 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8E7B58231B41C51000927857 /* Build configuration list for PBXNativeTarget "FoodieLoveTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +457,7 @@
 				8E7B58251B41C51000927857 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
