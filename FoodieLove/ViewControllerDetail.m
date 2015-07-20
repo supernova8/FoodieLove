@@ -237,6 +237,53 @@
             NSLog(@"Image Path:%@",newImagePath);
             NSLog(@"Image Saved & Set");
             
+          UIImageWriteToSavedPhotosAlbum(scaledRotatedImage, nil, nil, nil);
+            //Save to Camera ROll?
+            
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera!"  message:@"Looks like you don't have a camera! :P" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [alert show];
+//            
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Note"
+//                                                            message:@"some message"
+//                                                           delegate:self    // must be self to call clickedButtonAtIndex
+//                                                  cancelButtonTitle:@"Cancel"
+//                                                  otherButtonTitles:@"OK", nil];
+//            
+//            
+//           
+//            - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+//                
+//                if (buttonIndex == [alertView cancelButtonIndex]) {
+//                    NSLog(@"The cancel button was clicked from alertView");
+//                }
+//                else {
+//                    UIImageWriteToSavedPhotosAlbum(scaledRotatedImage, nil, nil, nil);
+//                }
+//            }
+//         
+//            
+//            
+//            
+//            
+//            var refreshAlert = UIAlertController(title: "Confirm Deletion", message: "Delete this ToDo?", preferredStyle: UIAlertControllerStyle.Alert)
+//            
+//            refreshAlert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: { (action: UIAlertAction!) in
+//                println("Handle Ok logic here")
+//                
+//                self.managedObjectContext.deleteObject(self.currentToDo);
+//                self.appDelegate.saveContext();
+//                self.navigationController!.popToRootViewControllerAnimated(true)
+//                
+//            }))
+//            
+//            refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+//                println("Handle Cancel Logic here")
+//            }))
+//            
+//            presentViewController(refreshAlert, animated: true, completion: nil)
+//            
+            
+          
             
         }
         

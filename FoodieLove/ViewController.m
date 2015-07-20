@@ -98,6 +98,7 @@ int addCounterInt = 0;
     if (collectionView == _dishCollectionView) {
         NSLog(@"iCell!");
         _dishCollectionView.backgroundColor = [UIColor gummyClearColor];
+        
         NSString *CellIdentifier = @"iCell";
         DishCollectionViewCell *iCell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         
