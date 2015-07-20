@@ -104,7 +104,7 @@ int addCounterInt = 0;
         
         Dishes *currentDish = [_dishArray objectAtIndex:indexPath.row];
         iCell.dishNameLabel.text = [currentDish dishName];
-        iCell.dishNameLabel.textColor = [UIColor gummyBlueColor];
+        iCell.dishNameLabel.textColor = [UIColor whiteColor];
         
         NSNumber *catNum = [currentDish dishRating];
         if ([catNum intValue] == 0) {
@@ -118,7 +118,7 @@ int addCounterInt = 0;
         }else{
             iCell.dishRankingLabel.text = [NSString stringWithFormat:@"Rating: Amazing"];
         }
-        iCell.dishRankingLabel.textColor = [UIColor gummyBlueColor];
+        iCell.dishRankingLabel.textColor = [UIColor whiteColor];
         
         //iCell.dishRankingLabel.text = [NSString stringWithFormat:@"Ranking: %i",[[currentDish dishRating] intValue]];
         

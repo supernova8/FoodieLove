@@ -26,7 +26,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *galleryButton;
 @property (nonatomic, weak) IBOutlet UIButton *cameraButton;
 @property (nonatomic, weak) IBOutlet UIButton *deleteButton;
-
+@property (nonatomic, weak) IBOutlet UISwitch *saveToCameraRollSwitch;
 
 
 
@@ -198,6 +198,10 @@
 
 - (IBAction)saveButtonPressed:(id)sender {
     
+    if ((_dishNameTextField.text && _dishNameTextField.text.length > 1) && (_dishImageView.image)) {
+        NSLog(@"Fine to Save");
+    
+    
     if (_currentDish) {
         NSLog(@"Saving Old Dish");
         NSString *imageFileName = _currentDish.dishImageFileName;
@@ -237,58 +241,20 @@
             NSLog(@"Image Path:%@",newImagePath);
             NSLog(@"Image Saved & Set");
             
-          UIImageWriteToSavedPhotosAlbum(scaledRotatedImage, nil, nil, nil);
-            //Save to Camera ROll?
-            
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Camera!"  message:@"Looks like you don't have a camera! :P" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            [alert show];
-//            
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Note"
-//                                                            message:@"some message"
-//                                                           delegate:self    // must be self to call clickedButtonAtIndex
-//                                                  cancelButtonTitle:@"Cancel"
-//                                                  otherButtonTitles:@"OK", nil];
-//            
-//            
-//           
-//            - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-//                
-//                if (buttonIndex == [alertView cancelButtonIndex]) {
-//                    NSLog(@"The cancel button was clicked from alertView");
-//                }
-//                else {
-//                    UIImageWriteToSavedPhotosAlbum(scaledRotatedImage, nil, nil, nil);
-//                }
-//            }
-//         
-//            
-//            
-//            
-//            
-//            var refreshAlert = UIAlertController(title: "Confirm Deletion", message: "Delete this ToDo?", preferredStyle: UIAlertControllerStyle.Alert)
-//            
-//            refreshAlert.addAction(UIAlertAction(title: "Delete", style: .Default, handler: { (action: UIAlertAction!) in
-//                println("Handle Ok logic here")
-//                
-//                self.managedObjectContext.deleteObject(self.currentToDo);
-//                self.appDelegate.saveContext();
-//                self.navigationController!.popToRootViewControllerAnimated(true)
-//                
-//            }))
-//            
-//            refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
-//                println("Handle Cancel Logic here")
-//            }))
-//            
-//            presentViewController(refreshAlert, animated: true, completion: nil)
-//            
-            
-          
-            
         }
         
         
     }
+    
+    //Save to Camera Roll?
+    
+    
+    if (_saveToCameraRollSwitch.on) {
+        UIImage *scaledRotatedImage = [self scaleAndRotateImage:_dishImageView.image];
+        UIImageWriteToSavedPhotosAlbum(scaledRotatedImage, nil, nil, nil);
+        NSLog(@"Saved to Camera Roll");
+    }
+    
     //Record 1
     [_currentDish setDishName:_dishNameTextField.text];
     
@@ -301,8 +267,38 @@
     
     [_appDelegate saveContext];
     NSLog(@"Saved?");
-    [self.navigationController popToRootViewControllerAnimated:true];
     
+    [self.navigationController popToRootViewControllerAnimated:true];
+    }
+    else{
+        NSLog(@"Don't Save");
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Dish Not Saved"
+                                              message:@"Dish Title and/or Image Missing."
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+//        UIAlertAction *cancelAction = [UIAlertAction
+//                                       actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+//                                       style:UIAlertActionStyleCancel
+//                                       handler:^(UIAlertAction *action)
+//                                       {
+//                                           NSLog(@"Cancel action");
+//                                       }];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"OK action");
+                                   }];
+        
+        //[alertController addAction:cancelAction];
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+    }
     
 }
 
@@ -417,6 +413,7 @@
         //this is where we set the text on the DetailView Controller
     }else{
         [_dishNameTextField becomeFirstResponder];
+        
         _deleteButton.enabled = false;
     }
     
