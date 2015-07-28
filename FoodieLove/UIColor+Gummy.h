@@ -16,5 +16,11 @@
 +(UIColor *) gummyClearColor;
 +(UIColor *) gummyPinkColor;
 +(UIColor *) gummyDkBlueColor;
-
++(UIColor *) gummyBGColor;
++(UIColor *) gummyDkPinkColor;
++(UIColor *) gummyHotPinkColor;
++(UIColor *) gummyRoseColor;
++(UIColor *) gummyIceBlueColor;
++(UIColor *) gummyCoralColor;
++(UIColor *) gummyBerryColor;
 @end

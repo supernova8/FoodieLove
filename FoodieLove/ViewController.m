@@ -82,29 +82,20 @@ int addCounterInt = 0;
     return [_dishArray count];
 }
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    
-//    return 1;
-//    
-//}
-
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    
-//    return _dishArray.count;
-//}
-
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView == _dishCollectionView) {
         NSLog(@"iCell!");
-        _dishCollectionView.backgroundColor = [UIColor gummyClearColor];
+        //_dishCollectionView.backgroundColor = [UIColor gummyClearColor];
         
         NSString *CellIdentifier = @"iCell";
         DishCollectionViewCell *iCell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
         
+        //iCell.backgroundColor = [UIColor whiteColor];
+        //iCell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo-frame.png"]];
+        
         Dishes *currentDish = [_dishArray objectAtIndex:indexPath.row];
         iCell.dishNameLabel.text = [currentDish dishName];
-        iCell.dishNameLabel.textColor = [UIColor whiteColor];
+        iCell.dishNameLabel.textColor = [UIColor gummyPinkColor];
         
         NSNumber *catNum = [currentDish dishRating];
         if ([catNum intValue] == 0) {
@@ -120,22 +111,15 @@ int addCounterInt = 0;
         }
         iCell.dishRankingLabel.textColor = [UIColor whiteColor];
         
-        //iCell.dishRankingLabel.text = [NSString stringWithFormat:@"Ranking: %i",[[currentDish dishRating] intValue]];
-        
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true);
         //Gimme a list of all the paths that Document Directory for the current user.
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        //NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",currentDish.dishImageFileName]];
         NSString *savedImagePath = [documentsDirectory stringByAppendingFormat:@"/%@",currentDish.dishImageFileName];
         
         NSLog(@"Displayed Dish: %@",currentDish);
         
-        //[cell.imageView setImage:[UIImage imageNamed:[currentDish dishImageFileName]]];
         [iCell.dishImageView setImage:[UIImage imageNamed:savedImagePath]];
-
-        
-       // iCell.dishImageView.image = [UIImage imageNamed:[currentDish dishImageName]];
-        
+    
         return iCell;
         
         
@@ -144,77 +128,10 @@ int addCounterInt = 0;
 }
 
 
-//Method to push Array Fields into the TableView Cells
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    NSLog(@"Cell!");
-//    NSString *cellIdentifier =@"Cell"; //we've replaced string with this
-//    
-//    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    // takes cell that is being recycled and takes it to reuse it.
-//    
-//    if (cell ==nil) { //if you don't have an old one, then let's create a new one
-//        cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//        cell.accessoryView = nil;
-//        //these Strings need to be the same as line above
-//        
-//        // these below are placed here so theyre only done when cell is created
-//        
-//    }
-//    cell.accessoryView = nil;
-//    Dishes *currentDish = _dishArray[indexPath.row];
-//    
-//    cell.textLabel.text = [currentDish dishName];
-//    
-//    //Set the Cell Text field with the First and Last name from the Array
-//    
-//    NSNumber *catNum = [currentDish dishRating];
-//    //[currentDish.DishCategory intValue];
-//    
-//    if ([catNum intValue] == 0) {
-//        cell.detailTextLabel.text = @"Gross";
-//    }else if ([catNum intValue]  == 1){
-//        cell.detailTextLabel.text = @"Boring";
-//    }else if ([catNum intValue]  == 2){
-//        cell.detailTextLabel.text = @"Okay";
-//    }else if ([catNum intValue]  == 3){
-//        cell.detailTextLabel.text = @"Delish";
-//    }else{
-//        cell.detailTextLabel.text = @"Amazing";
-//    }
-//    //cell.detailTextLabel.text = [currentDish DishEmail];
-//    
-//    //Set the Cell Detail Text with the string for category
-//    
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true);
-//    //Gimme a list of all the paths that Document Directory for the current user.
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    //NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",currentDish.dishImageFileName]];
-//    NSString *savedImagePath = [documentsDirectory stringByAppendingFormat:@"/%@",currentDish.dishImageFileName];
-//    
-//    NSLog(@"Displayed Dish: %@",currentDish);
-//    
-//    //[cell.imageView setImage:[UIImage imageNamed:[currentDish dishImageFileName]]];
-//    [cell.imageView setImage:[UIImage imageNamed:savedImagePath]];
-//    return cell;
-//    
-//}
-
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     return CGSizeMake(150.0, 170.0);
 }
-
-////Tells the segue that a cell was selected and to do the PrepareforSegue Method
-//
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    NSLog(@"Select");
-//    
-//    [self performSegueWithIdentifier:@"listToDetailSegue" sender:self];
-//}
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender    {
     
@@ -244,49 +161,9 @@ int addCounterInt = 0;
             //changes the text of the nameSting label to the current flavor
             
         }
-
-        
-//        
-//        NSIndexPath *indexPath = [[_dishCollectionView indexPathsForSelectedItems] objectAtIndex:0];
-//        //This line changed
-//        
-//        Flavors *selectedFlavor = [_flavorsArray objectAtIndex:[indexPath row]];
-//        
-//        
-//        [destController setSelectedFlavor:selectedFlavor];}
-    
     
 }
 }
-
-//This method gives the DetailViewController the data to display
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    
-//    ViewControllerDetail *destController = [segue destinationViewController];
-//    //inits the Controller
-//    
-//    if(addCounterInt >= 1) {
-//        NSLog(@"add");
-//        Dishes *currentDish;
-//        destController.currentDish = currentDish;
-//        addCounterInt = 0;
-//        
-//    }
-//    else { //Update
-//        NSLog(@"update to segue");
-//        
-//        NSIndexPath *indexPath = [_dishTableView indexPathForSelectedRow];
-//        //creates the indexPath
-//        
-//        Dishes *currentDish = _dishArray[indexPath.row];
-//        //creates the current Flavor
-//        
-//        destController.currentDish = currentDish;
-//        //changes the text of the nameSting label to the current flavor
-//        
-//    }
-//}
-//
 
 
 
@@ -300,18 +177,6 @@ int addCounterInt = 0;
     _appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     _managedObjectContext = _appDelegate.managedObjectContext;
     
-    //    if(!_managedObjectContext) {
-    //        NSLog(@"Add Temp Records");
-    //        //Don't add anymore temp records
-    //
-    //
-    //[self tempAddRecords];
-    //    }
-    //    else {
-    //    // Don't add Temp Records
-    //        NSLog(@"Don't Add Temp Records");
-    //    }
-//    _dishArray = [self fetchDishes];
     NSLog(@"Count: %lu", _dishArray.count);
 }
 
@@ -322,6 +187,8 @@ int addCounterInt = 0;
     _dishArray = [self fetchDishes];
     NSLog(@"View Count: %lu", _dishArray.count);
     [_dishCollectionView reloadData];
+    
+    
     
     // to reload the Data in the TableView
     

@@ -1,10 +1,12 @@
-//
+/*
 //  ViewControllerDetail.m
 //  FoodieLove
 //
 //  Created by Sonova Middleton on 6/30/15.
 //  Copyright (c) 2015 supernova8productions. All rights reserved.
 //
+//  Categorize and Take Pictures of your Favorite Food Dishes. You can also save the pictures taken to your Camera Roll.
+*/
 
 #import "ViewControllerDetail.h"
 #import "AppDelegate.h"
@@ -15,12 +17,8 @@
 @property (nonatomic,strong) AppDelegate *appDelegate;
 @property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
 
-@property (nonatomic, strong) IBOutlet UILabel *nameLabel;
-//@property (nonatomic, weak) IBOutlet UITextField *dishNameTextField;
-
-
-@property (nonatomic, weak) IBOutlet UILabel *ratingLabel;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *dishRatingSegControl;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *dishTypeSegControl;
 
 @property (nonatomic, weak) IBOutlet UIImageView *dishImageView;
 @property (nonatomic, weak) IBOutlet UIButton *galleryButton;
@@ -57,9 +55,6 @@
     UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
     
     ipc.delegate = self;
-    //ipc.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-    
-    
     ipc.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     id albumCtrller = ipc.topViewController;
     ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -205,45 +200,26 @@
     if (_currentDish) {
         NSLog(@"Saving Old Dish");
         NSString *imageFileName = _currentDish.dishImageFileName;
-        
-        
         NSString *newImagePath = [self getDocumentPathForFile:imageFileName];
         NSLog(@"Image Path:%@",newImagePath);
-//        if ([self fileDoesExistAtPath:newImagePath] && _dishImageView.image) {
-//            NSError *error;
-//            [[NSFileManager defaultManager] removeItemAtPath:newImagePath error:&error];
-//            if (error) NSLog(@"Image Remove Error %@",error);
-//            
-////            NSString *imageFileName = [self getNewImageFilename];
-////            [UIImagePNGRepresentation(_dishImageView.image) writeToFile:newImagePath atomically:true];
-////            
-////            [_currentDish setDishImageFileName:[NSString stringWithFormat:@"%@",imageFileName]];
-//            NSLog(@"Old Image Removed");
-//        }
-        
     } else {
         NSLog(@"Saving New Dish");
         _currentDish = (Dishes *)[NSEntityDescription insertNewObjectForEntityForName:@"Dishes" inManagedObjectContext:_managedObjectContext];
         [_currentDish setDateEntered:[NSDate date]];
-        
-        
             }
             
-    NSString *imageFileName = [self getNewImageFilename];
-    if (imageFileName) {
+            NSString *imageFileName = [self getNewImageFilename];
+            if (imageFileName) {
         
-        NSString *newImagePath = [self getDocumentPathForFile:[NSString stringWithFormat:@"%@",imageFileName]];
-        if (![self fileDoesExistAtPath:newImagePath] && _dishImageView.image) {
+            NSString *newImagePath = [self getDocumentPathForFile:[NSString stringWithFormat:@"%@",imageFileName]];
+            if (![self fileDoesExistAtPath:newImagePath] && _dishImageView.image) {
             
             UIImage *scaledRotatedImage = [self scaleAndRotateImage:_dishImageView.image];
             [UIImagePNGRepresentation(scaledRotatedImage) writeToFile:newImagePath atomically:true];
             [_currentDish setDishImageFileName:imageFileName];
             NSLog(@"Image Path:%@",newImagePath);
             NSLog(@"Image Saved & Set");
-            
         }
-        
-        
     }
     
     //Save to Camera Roll?
@@ -258,12 +234,24 @@
     //Record 1
     [_currentDish setDishName:_dishNameTextField.text];
     
+    NSNumber *catNum = [NSNumber numberWithLong:_dishTypeSegControl.selectedSegmentIndex];
+    if ([catNum intValue] == 0) {
+        [_currentDish setDishType:[NSString stringWithFormat:@"Drink"]];
+    }else if ([catNum intValue]  == 1){
+        [_currentDish setDishType:[NSString stringWithFormat:@"Appetizer"]];
+    }else if ([catNum intValue]  == 2){
+        [_currentDish setDishType:[NSString stringWithFormat:@"Entrée"]];
+    }else if ([catNum intValue]  == 3){
+        [_currentDish setDishType:[NSString stringWithFormat:@"Snack"]];
+    }else if ([catNum intValue]  == 4){
+        [_currentDish setDishType:[NSString stringWithFormat:@"Dessert"]];
+    }else {
+        [_currentDish setDishType:@""];
+    }
+    
     [_currentDish setDishRating:[NSNumber numberWithLong:_dishRatingSegControl.selectedSegmentIndex]];
     
     [_currentDish setDateUpdated:[NSDate date]];
-    
-    
-    
     
     [_appDelegate saveContext];
     NSLog(@"Saved?");
@@ -277,14 +265,6 @@
                                               message:@"Dish Title and/or Image Missing."
                                               preferredStyle:UIAlertControllerStyleAlert];
         
-//        UIAlertAction *cancelAction = [UIAlertAction
-//                                       actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
-//                                       style:UIAlertActionStyleCancel
-//                                       handler:^(UIAlertAction *action)
-//                                       {
-//                                           NSLog(@"Cancel action");
-//                                       }];
-        
         UIAlertAction *okAction = [UIAlertAction
                                    actionWithTitle:NSLocalizedString(@"OK", @"OK action")
                                    style:UIAlertActionStyleDefault
@@ -293,7 +273,6 @@
                                        NSLog(@"OK action");
                                    }];
         
-        //[alertController addAction:cancelAction];
         [alertController addAction:okAction];
         
         [self presentViewController:alertController animated:YES completion:nil];
@@ -370,7 +349,7 @@
     NSString *settingsPath = [self getDocumentPathForFile:@"Settings.plist"];
     NSMutableDictionary *settingsPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:settingsPath];
     long counter = [[settingsPlist objectForKey:@"ImageNameCounter"] integerValue];
-    NSLog(@"Long Counter: %li",counter);
+    //NSLog(@"Long Counter: %li",counter);
     if (counter == 0) {
         counter ++;
         NSLog(@"Counter was 0 now it's %li",counter);
@@ -397,9 +376,26 @@
         
         _dishNameTextField.text = _currentDish.dishName;
         
+        NSString *dishType = _currentDish.dishType;
+        
+        
+        if ([dishType isEqualToString:@"Drink"]) {
+            [_dishTypeSegControl setSelectedSegmentIndex:0];
+        }else if ([dishType isEqualToString:@"Appetizer"]) {
+            [_dishTypeSegControl setSelectedSegmentIndex:1];
+        }else if ([dishType isEqualToString:@"Entrée"]) {
+            [_dishTypeSegControl setSelectedSegmentIndex:2];
+        }else if ([dishType isEqualToString:@"Snack"]) {
+            [_dishTypeSegControl setSelectedSegmentIndex:3];
+        }else if ([dishType isEqualToString:@"Dessert"]) {
+            [_dishTypeSegControl setSelectedSegmentIndex:4];
+        }else {
+            
+        }
+
+        
         [_dishRatingSegControl setSelectedSegmentIndex:[_currentDish.dishRating intValue]];
-        _dishRatingSegControl.tintColor = [UIColor gummyGreenColor];
-        //Image
+       
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true);
         //Gimme a list of all the paths that Document Directory for the current user.
@@ -417,12 +413,15 @@
         _deleteButton.enabled = false;
     }
     
-    _galleryButton.backgroundColor = [UIColor gummyGreenColor];
-    _cameraButton.backgroundColor = [UIColor gummyGreenColor];
-    _deleteButton.backgroundColor = [UIColor gummyPinkColor];
+    
+    self.navigationController.navigationBar.tintColor = [UIColor gummyHotPinkColor];
+    
+    _galleryButton.backgroundColor = [UIColor gummyIceBlueColor];
+    _cameraButton.backgroundColor = [UIColor gummyIceBlueColor];
+    _deleteButton.backgroundColor = [UIColor gummyBerryColor];
     [_galleryButton setTitleColor:[UIColor gummyDkBlueColor] forState:normal];
     [_cameraButton setTitleColor:[UIColor gummyDkBlueColor] forState:normal];
-    _dishNameTextField.textColor = [UIColor gummyGreenColor];
+    _dishNameTextField.textColor = [UIColor gummyRoseColor];
 
     
     
@@ -434,44 +433,11 @@
     
     [super viewWillAppear:animated];
     
-    //    if (_currentDish) {
-    //        NSLog(@"Not nil");
-    //
-    //        _dishNameTextField.text = _currentDish.dishName;
-    //
-    //        [_dishRatingSegControl setSelectedSegmentIndex:[_currentDish.dishRating intValue]];
-    //
-    //        //Image
-    //
-    //        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true);
-    //        //Gimme a list of all the paths that Document Directory for the current user.
-    //        NSString *documentsDirectory = [paths objectAtIndex:0];
-    //        NSString *savedImagePath = [documentsDirectory stringByAppendingFormat:@"/%@",_currentDish.dishImageFileName];
-    //
-    //
-    //        [_dishImageView setImage:[UIImage imageNamed:savedImagePath]];
-    //
-    //
-    //        //this is where we set the text on the DetailView Controller
-    //    }else{
-    //        NSLog(@"nil");
-    //        [_dishNameTextField becomeFirstResponder];
-    //    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "UIColor+Gummy.h"
+#import "ViewControllerDetail.h"
 
 @interface AppDelegate ()
 
@@ -15,11 +17,51 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    return YES;
+- (void)customizeAppearance {
+    
+    //change titlebar everywhere to look different
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor gummyDkPinkColor], NSFontAttributeName: [UIFont fontWithName:@"Noteworthy-Bold" size:24.0]}];
+    
+    [[UINavigationBar appearance] setBackgroundColor:[UIColor gummyBGColor]];
+    
+    //[[UICollectionView appearance] setBackgroundColor:[UIColor gummyClearColor]]; //all VCs unless changed locally
+    
+    [[UICollectionView appearance] setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"coral_chevron_background"]]];
+    
+    //[[UICollectionView appearance] setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chevron_background"]]];
+    
+    //[[UIView appearanceWhenContainedIn:[ViewControllerDetail class], nil] setBackgroundColor:[UIColor gummyClearColor]];
+    
+    //[[UIView appearanceWhenContainedIn:[ViewControllerDetail class], nil] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"iphone-coral-polka-dots"]]];
+    
+    [[UIBarButtonItem appearance] setTintColor:[UIColor gummyHotPinkColor]];
+    
+    [[UISegmentedControl appearance] setTintColor:[UIColor gummyBerryColor]];
+    
+    
+   // [[UILabel appearanceWhenContainedIn:[ViewControllerDetail class], nil] setTextColor:[UIColor blackColor]]; //so anything in this class
+    
+//    if(self.view.frame.size.heigh==480){
+//        //put your image code here for 3.5 inch screen
+//    }
+//    else if(self.view.frame.size.height==568){
+//        //put your image code here for 4-inch screen
+//    }
+    
+    
+    //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_bar"] forBarMetrics:UIBarMetricsDefault];
+
+    //[[UILabel appearanceWhenContainedIn:[GCAppearanceViewController class], nil] setFont:[UIFont fontWithName:@"Baskerville" size:19.0]];
+    
+    //[[UIButton appearance] setTitleColor:[UIColor redColor] forState:UIControlStateNormal]; //buttons are a little different
 }
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [self customizeAppearance];
+    return YES;
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DE77BC41B6185770014C1F8 /* BorderShadowRoundedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE77BC31B6185770014C1F8 /* BorderShadowRoundedView.m */; };
+		2DE77BC71B6187750014C1F8 /* BorderShadowRoundedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE77BC61B6187750014C1F8 /* BorderShadowRoundedImageView.m */; };
+		2DE77C191B62CFB10014C1F8 /* BorderShadowRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE77C181B62CFB10014C1F8 /* BorderShadowRoundedButton.m */; };
 		8E7B58001B41C50F00927857 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B57FF1B41C50F00927857 /* main.m */; };
 		8E7B58031B41C50F00927857 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B58021B41C50F00927857 /* AppDelegate.m */; };
 		8E7B58061B41C51000927857 /* FoodieLove.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B58041B41C51000927857 /* FoodieLove.xcdatamodeld */; };
@@ -33,6 +36,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2DE77BC21B6185770014C1F8 /* BorderShadowRoundedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderShadowRoundedView.h; sourceTree = "<group>"; };
+		2DE77BC31B6185770014C1F8 /* BorderShadowRoundedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderShadowRoundedView.m; sourceTree = "<group>"; };
+		2DE77BC51B6187750014C1F8 /* BorderShadowRoundedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderShadowRoundedImageView.h; sourceTree = "<group>"; };
+		2DE77BC61B6187750014C1F8 /* BorderShadowRoundedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderShadowRoundedImageView.m; sourceTree = "<group>"; };
+		2DE77C171B62CFB10014C1F8 /* BorderShadowRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorderShadowRoundedButton.h; sourceTree = "<group>"; };
+		2DE77C181B62CFB10014C1F8 /* BorderShadowRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorderShadowRoundedButton.m; sourceTree = "<group>"; };
 		8E7B57FA1B41C50F00927857 /* FoodieLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodieLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7B57FE1B41C50F00927857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E7B57FF1B41C50F00927857 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -105,6 +114,12 @@
 				8E7B583B1B42E91100927857 /* ViewControllerDetail.m */,
 				8E7B583D1B433BAC00927857 /* DishCollectionViewCell.h */,
 				8E7B583E1B433BAC00927857 /* DishCollectionViewCell.m */,
+				2DE77C171B62CFB10014C1F8 /* BorderShadowRoundedButton.h */,
+				2DE77C181B62CFB10014C1F8 /* BorderShadowRoundedButton.m */,
+				2DE77BC21B6185770014C1F8 /* BorderShadowRoundedView.h */,
+				2DE77BC31B6185770014C1F8 /* BorderShadowRoundedView.m */,
+				2DE77BC51B6187750014C1F8 /* BorderShadowRoundedImageView.h */,
+				2DE77BC61B6187750014C1F8 /* BorderShadowRoundedImageView.m */,
 				8E7B580A1B41C51000927857 /* Main.storyboard */,
 				8E7B58401B43892600927857 /* UIColor+Gummy.h */,
 				8E7B58411B43892600927857 /* UIColor+Gummy.m */,
@@ -246,13 +261,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DE77BC71B6187750014C1F8 /* BorderShadowRoundedImageView.m in Sources */,
 				8E7B58061B41C51000927857 /* FoodieLove.xcdatamodeld in Sources */,
 				8E7B58421B43892600927857 /* UIColor+Gummy.m in Sources */,
 				8E7B58031B41C50F00927857 /* AppDelegate.m in Sources */,
 				8E7B58091B41C51000927857 /* ViewController.m in Sources */,
 				8E7B58331B41DDF100927857 /* Dishes.m in Sources */,
+				2DE77BC41B6185770014C1F8 /* BorderShadowRoundedView.m in Sources */,
 				8E7B583C1B42E91100927857 /* ViewControllerDetail.m in Sources */,
 				8E7B583F1B433BAC00927857 /* DishCollectionViewCell.m in Sources */,
+				2DE77C191B62CFB10014C1F8 /* BorderShadowRoundedButton.m in Sources */,
 				8E7B58001B41C50F00927857 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
